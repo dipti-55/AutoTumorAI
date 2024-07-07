@@ -1,7 +1,7 @@
 from Classifier.constants import *
 import os
 from Classifier.utils.common import read_yaml, create_directories,save_json
-from Classifier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig)
+from Classifier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig, EvaluationConfig)
 
 
 # ConfigurationManager class manages configuration settings for the application.
@@ -105,3 +105,15 @@ class ConfigurationManager:
         )
 
         return training_config 
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        # Create and return an EvaluationConfig object using the loaded configuration and parameters
+        eval_config = EvaluationConfig(
+            path_of_model="artifacts/training/model.h5",  # Path to the saved model file
+            training_data="artifacts/data_ingestion/kidney2000",  # Path to the training data directory
+            mlflow_uri="https://dagshub.com/dipti-55/Automated-Tumor-Detection.mlflow", # URI for MLflow tracking
+            all_params=self.params, # All parameters for evaluation
+            params_image_size=self.params.IMAGE_SIZE, # Image size parameter
+            params_batch_size=self.params.BATCH_SIZE # Batch size parameter
+        )
+        return eval_config # Return the created EvaluationConfig object
