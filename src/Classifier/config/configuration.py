@@ -1,7 +1,7 @@
 from Classifier.constants import *
 import os
 from Classifier.utils.common import read_yaml, create_directories,save_json
-from Classifier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig)
+from Classifier.entity.config_entity import (DataIngestionConfig, PrepareBaseModelConfig, TrainingConfig)
 
 
 # ConfigurationManager class manages configuration settings for the application.
@@ -69,3 +69,39 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+
+    def get_training_config(self) -> TrainingConfig:
+        """
+        Retrieves and constructs training configuration parameters.
+
+        Returns:
+            TrainingConfig: An instance of TrainingConfig containing all necessary training parameters.
+        """
+        # Retrieve the training section from the configuration
+        training = self.config.training
+        # Retrieve the prepare_base_model section from the configuration
+        prepare_base_model = self.config.prepare_base_model
+        # Retrieve the parameters section from the configuration
+        params = self.params
+
+        # Construct the path to the training data directory
+        training_data = os.path.join(self.config.data_ingestion.unzip_dir, "kidney2000")
+
+        # Create directories for training artifacts
+        create_directories([Path(training.root_dir)])
+
+        # Create a TrainingConfig instance with the specified parameters
+        training_config = TrainingConfig(
+            root_dir=Path(training.root_dir), # Root directory for training artifacts
+            trained_model_path=Path(training.trained_model_path), # Path to save the trained model
+            updated_base_model_path=Path(prepare_base_model.updated_base_model_path), # Path to the updated base model
+            training_data=Path(training_data), # Path to the training data
+            params_learning_rate=params.LEARNING_RATE, # Learning rate for training
+            params_epochs=params.EPOCHS, # Number of epochs for training
+            params_batch_size=params.BATCH_SIZE, # Batch size for training
+            params_is_augmentation=params.AUGMENTATION, # Whether data augmentation should be used
+            params_image_size=params.IMAGE_SIZE # Image size for the model input
+        )
+
+        return training_config 
