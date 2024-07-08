@@ -164,3 +164,6 @@ artifacts/*
 scores.json
 
 notebooks/*
+dvc.lock
+.dvc/
+.dvcignore
