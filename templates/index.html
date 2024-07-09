@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/templates/style.css">
+    <title>Object Classification</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Automated Tumor Detection (in Kidneys)</h1>
+        <div class="image-box">
+            <img id="image-preview" src="https://via.placeholder.com/224" alt="Uploaded Image">
+        </div>
+        <input type="file" id="file-input" style="display: none;" accept="image/*">
+        <button id="upload-button">Upload</button>
+        <button id="predict-button">Predict</button>
+        <div id="result-box" class="result-box" style="display: none;">
+            <h2>Prediction Results</h2>
+            <p id="result-text"></p>
+        </div>
+    </div>
+    <script src="/templates/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.image-box {
+    margin: 20px auto;
+}
+
+.image-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button#upload-button {
+    background-color: blue;
+    color: white;
+}
+
+button#upload-button:hover {
+    background-color: darkblue;
+}
+
+button#upload-button:active {
+    transform: scale(0.95); 
+}
+
+button#predict-button {
+    background-color: green;
+    color: white;
+}
+
+button#predict-button:hover {
+    background-color: darkgreen;
+}
+
+button#predict-button:active {
+    transform: scale(0.95); 
+}
+
+.result-box {
+    margin-top: 20px;
+}
