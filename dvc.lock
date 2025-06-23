@@ -97,8 +97,8 @@ stages:
       size: 788
     - path: src/Classifier/pipeline/stage_04_model_evaluation.py
       hash: md5
-      md5: ddf3a9790a41a75b3f1f31252825b6c2
-      size: 891
+      md5: 270ada952dfbc8b6a054138629bde9e6
+      size: 893
     params:
       params.yaml:
         BATCH_SIZE: 16

@@ -5,7 +5,9 @@ import tensorflow as tf
 from pathlib import Path
 from Classifier.entity.config_entity import PrepareBaseModelConfig
 
-
+"""
+Prepares a VGG16-based model for tumor detection by loading pretrained weights, freezing base layers, adding a custom classification layer, compiling with SGD optimizer, and saving both the base and updated models at specified paths.
+"""
 class PrepareBaseModel:
     def __init__(self, config: PrepareBaseModelConfig):
         self.config = config
